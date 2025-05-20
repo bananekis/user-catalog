@@ -65,8 +65,8 @@ Vytvořil jsem jednoduchou frontendovou aplikaci v Next.js s následujícími fu
 1. Naklonujte repozitář:
 
 ```bash
-git clone <url-repozitáře>
-cd katalog-uzivatelu
+git clone https://github.com/bananekis/user-catalog.git
+cd user-catalog
 ```
 
 2. Nainstalujte závislosti:
