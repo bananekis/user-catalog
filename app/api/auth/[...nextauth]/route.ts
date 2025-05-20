@@ -46,6 +46,10 @@ const handler = NextAuth({
 		strategy: "jwt",
 		maxAge: 30 * 24 * 60 * 60, // 30 days
 	},
+	// Add a secret key for production
+	secret:
+		process.env.NEXTAUTH_SECRET ||
+		"THIS_IS_AN_EXAMPLE_SECRET_THAT_SHOULD_BE_CHANGED",
 	callbacks: {
 		async redirect({ url, baseUrl }) {
 			// Allows relative callback URLs

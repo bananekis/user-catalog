@@ -70,54 +70,63 @@ cd user-catalog
 ```
 
 2. Nainstalujte závislosti:
-
-```shellscript
+\`\`\`bash
 npm install
 # nebo s legacy-peer-deps pokud narazíte na konflikty
 npm install --legacy-peer-deps
-```
+\`\`\`
 
-3. Spusťte vývojový server:
+3. Vytvořte soubor `.env.local` s následujícími proměnnými:
+\`\`\`
+NEXTAUTH_SECRET=vaše_tajné_heslo_zde
+NEXTAUTH_URL=http://localhost:3000
+\`\`\`
+Pro produkční prostředí vygenerujte bezpečný náhodný řetězec pomocí:
+\`\`\`bash
+openssl rand -base64 32
+\`\`\`
 
-```shellscript
+4. Spusťte vývojový server:
+\`\`\`bash
 npm run dev
-```
+\`\`\`
 
-4. Otevřete prohlížeč na adrese [http://localhost:3000](http://localhost:3000)
+5. Otevřete prohlížeč na adrese [http://localhost:3000](http://localhost:3000)
 
 ## 🔑 Přihlašovací údaje
 
 Pro přihlášení do aplikace použijte:
-
--   **E-mail**: [admin@example.com](mailto:admin@example.com)
--   **Heslo**: password
+- **E-mail**: admin@example.com
+- **Heslo**: password
 
 ## 📝 Implementační detaily
 
 ### Autentizace
-
 Aplikace používá next-auth s Credentials providerem pro správu přihlášení. V reálném projektu by byla autentizace napojena na databázi, ale pro účely demonstrace je použit statický uživatelský účet.
 
-### Správa stavu
+### Proměnné prostředí
+Pro správné fungování autentizace je nutné nastavit následující proměnné prostředí:
 
--   Server Components jsou použity pro načítání dat
--   Client Components jsou použity pro interaktivní prvky
--   Server Actions jsou použity pro manipulaci s daty (přidání uživatele)
+- `NEXTAUTH_SECRET`: Tajný klíč pro šifrování tokenů a cookies (povinné v produkci)
+- `NEXTAUTH_URL`: URL adresa aplikace (výchozí je http://localhost:3000 pro vývoj)
+
+Tyto proměnné by měly být nastaveny v souboru `.env.local` pro vývoj a v proměnných prostředí na produkčním serveru.
+
+### Správa stavu
+- Server Components jsou použity pro načítání dat
+- Client Components jsou použity pro interaktivní prvky
+- Server Actions jsou použity pro manipulaci s daty (přidání uživatele)
 
 ### Ukládání dat
-
 Nově přidaní uživatelé jsou ukládáni do cookies prohlížeče. V produkčním prostředí by byla použita databáze.
 
 ### Formuláře
-
 Formuláře jsou implementovány pomocí React Hook Form s validací Zod, což zajišťuje:
-
--   Typovou bezpečnost
--   Validaci na straně klienta
--   Efektivní správu stavu formuláře
+- Typovou bezpečnost
+- Validaci na straně klienta
+- Efektivní správu stavu formuláře
 
 ### Responzivní design
-
 Aplikace je plně responzivní a funguje na mobilních i desktopových zařízeních díky Tailwind CSS.
 
 ## 🔍 Testování
